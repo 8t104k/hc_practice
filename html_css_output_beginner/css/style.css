@@ -1,0 +1,112 @@
+
+p {
+    color: #1E262A;
+}
+
+.header {
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 4%;
+    align-items: center;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 4%;
+}
+.header h1 {
+    font-size: 20px;
+    background-color:#495368;
+    color: #fff;
+    padding: 10px 20px;
+}
+
+.header ul {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header li {
+    padding: 0 5px;
+    font-size: 0.9em;
+}
+
+.main_img {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.main_img img{
+    height: 600px;
+    object-fit: center;
+    object-position: 50% 50%;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 100%;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.container h1 {
+    text-align: center;
+    margin: 30px 0;
+}
+.container h1 span{
+    font-size: 30px;
+    border-bottom: #000 1px solid;
+    padding-bottom: 10px;
+}
+
+.profile {
+    margin: 0 auto;
+    padding: 30px 4%;
+}
+
+.prof_art h2{
+    text-align: center;
+    padding-bottom: 10px;
+}
+.prof_img {
+    text-align: center;
+    padding-top: 10px;
+}
+.prof_img img {
+    height: 100px;
+    width: 100px;
+    border: 0px solid #000;
+    border-radius: 50%;
+}
+
+.profile_images {
+    display: grid;
+    margin: 0 auto;
+    padding: 30px 4%;
+    text-align: center;
+    gap: 20px;
+}
+.profile_images img {
+    width: 100%;
+}
+
+.profile_images .img_title {
+    margin: 20px 0;
+}
+
+.profile_images .img_text {
+    margin: 10px 0;
+}
+
+.footer {
+    text-align: center;
+    color: darkgrey;
+    font-size: 12px;
+    margin-bottom: 10px;
+    margin-top: 50px;
+}
+
+/*PCの設定*/
+@media screen and (min-width:600px){
+
+}
