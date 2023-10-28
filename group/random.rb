@@ -8,9 +8,10 @@ def num_of_people_in_group(people_num, group_num)
   left_num = people_num - new_nums[0] #残りの人数
 
   if group_num - 1 == 1
+    #残りが一つのグループならば、残りの人数を全て割り当てる
     new_nums << left_num
   else
-    #残った人数で残りのグループを分ける
+    #残った人数でさらにグループを分ける
     new_nums.concat(num_of_people_in_group(left_num,group_num - 1))
   end
 
@@ -26,7 +27,7 @@ def separete_group(group_num_array,all_people_array)
   return new_groups
 end
 
-peoples = ['A','B','C','D','E','F']
+peoples = ('A'..'F').to_a
 
 g_nums = num_of_people_in_group(peoples.length,2)
 separete_group(g_nums,peoples).map do |group|
