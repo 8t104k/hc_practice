@@ -17,10 +17,6 @@ def separete_group(all_people_array,group_num)
   return new_groups
 end
 
-def separete_group2
-
-end
-
 peoples = ('A'..'F').to_a
 separete_group(peoples,2).map do |group|
   p(group)
