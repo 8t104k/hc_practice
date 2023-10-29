@@ -1,16 +1,24 @@
 require 'Date'
 
-s_date = Date.new(2023,10,1)
-e_date = Date.new(2023,10,-1)
+s_date = Date.new(2023,11,1)
+e_date = Date.new(2023,11,-1)
 month = "    #{s_date.strftime('%B')} #{s_date.strftime('%Y')}"
-days_arry = [
-  ['Mo','Tu','We','Th','Fr','Sa','Su'],
-  (1..31).to_a
-  ]
+weeks = 'Mo Tu We Th Fr Sa Su '
+days = (1..31).to_a
+p(s_date.strftime("%a"))
+p(((s_date.wday.to_i)+6)%7)
+#からの配列ぶち込む
+days = Array.new(((s_date.wday.to_i)+6)%7,'') + days
 
 printf(month)
 print("\n")
-days_arry.map do |i|
-  i.map { |l| print(l.to_s + " ") }
+printf(weeks)
+print("\n")
+
+days.each.with_index(1) { |day,i|
+printf("%3s",day.to_s + " ")
+if i%7 == 0
   print("\n")
 end
+}
+print("\n")
