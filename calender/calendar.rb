@@ -4,9 +4,9 @@ s_date = Date.new(2023,11,1)
 e_date = Date.new(2023,11,-1)
 month = "    #{s_date.strftime('%B')} #{s_date.strftime('%Y')}"
 weeks = 'Mo Tu We Th Fr Sa Su '
-days = (1..31).to_a
-p(s_date.strftime("%a"))
-p(((s_date.wday.to_i)+6)%7)
+days = (1..e_date.strftime("%e").to_i).to_a
+#p(s_date.strftime("%a"))
+#p(((s_date.wday.to_i)+6)%7)
 #からの配列ぶち込む
 days = Array.new(((s_date.wday.to_i)+6)%7,'') + days
 
