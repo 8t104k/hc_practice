@@ -1,7 +1,22 @@
 require 'Date'
+require 'optparse'
 
-s_date = Date.new(2023,11,1)
-e_date = Date.new(2023,11,-1)
+opt = OptionParser.new
+
+opt.on('-m') {|v| p v }
+argv = opt.parse(ARGV)
+p(argv)
+
+#引数のバリデーション
+if argv == []
+  m = Date.today.strftime('%m').to_i
+else
+  return true if argv[0].to_i > 12
+  m = argv[0].to_i
+end
+
+s_date = Date.new(2023,m,1)
+e_date = Date.new(2023,m,-1)
 month = "    #{s_date.strftime('%B')} #{s_date.strftime('%Y')}"
 weeks = 'Mo Tu We Th Fr Sa Su '
 days = (1..e_date.strftime("%e").to_i).to_a
