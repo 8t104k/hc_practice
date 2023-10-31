@@ -7,22 +7,26 @@ def output_score(par_num,play_num)
   return "#{score}ボギー" if score >=2
   case score
   when 1
-    return 'ボギー'
+    'ボギー'
   when 0
-    return 'パー'
+    'パー'
   when -1
-    return 'バーディ'
+    'バーディ'
   when -2
-    return 'イーグル'
+    'イーグル'
   when -3
-    return 'アルバトロス'
+    'アルバトロス'
   when -4
-    return 'コンドル'
+    'コンドル'
   end
 end
 
-arry = []
-pars.map.with_index do |par, index|
-  arry << output_score(par,scores[index])
+score_results = []
+#pars.map.with_index do |par, index|
+#  score_results << output_score(par,scores[index])
+#end
+
+pars.zip(scores).map do |par,play|
+  score_results << output_score(par,play)
 end
-print(arry.join(','))
+puts score_results.join(',')
