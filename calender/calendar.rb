@@ -3,9 +3,9 @@ require 'optparse'
 
 params = ARGV.getopts("m:")
 
-if params['m'] == nil
+if params['m'].nil?
   #引数がなければ時効した日付の月を取得する
-  arg_m = Date.today.strftime('%m').to_i
+  arg_m = Date.today.month
 elsif params['m'] >= 1 && params['m'] <= 12
   arg_m = params['m'].to_i
 elsif params['m'] < 1 || params['m'] > 12
