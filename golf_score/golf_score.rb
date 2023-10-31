@@ -1,10 +1,10 @@
 pars = gets.split(',').map(&:to_i)
 scores = gets.split(',').map(&:to_i)
 
-def output_score(par_num,play_num)
+def calc_golf_score(par_num,play_num)
   score = play_num - par_num
   return 'ホールインワン' if par_num < 5 && play_num == 1
-  return "#{score}ボギー" if score >=2
+  return "#{score}ボギー" if score >= 2
   case score
   when 1
     'ボギー'
@@ -21,12 +21,5 @@ def output_score(par_num,play_num)
   end
 end
 
-score_results = []
-#pars.map.with_index do |par, index|
-#  score_results << output_score(par,scores[index])
-#end
-
-pars.zip(scores).map do |par,play|
-  score_results << output_score(par,play)
-end
+score_results = pars.zip(scores).map {|par,play| calc_golf_score(par,play)}
 puts score_results.join(',')
