@@ -15,6 +15,19 @@ class Suica
   end
 end
 
+class VenderMachine
+  def initialize
+    {name: 'ペプシ', price: 150}
+  end
+end
+
+class Juice
+  def initialize
+
+  end
+end
+
+
 
 test1 = Suica.new()
 puts test1.show
