@@ -11,6 +11,10 @@ class Suica
     end
   end
 
+  def buy(price)
+    @balance -= price
+  end
+
   def amount
     @balance
   end
@@ -21,18 +25,35 @@ class VenderMachine
   PRICE = [150]
   def initialize
     @stocks = {0 => 5}
+    @sales = 0
   end
 
   def check_stock(product)
-    @stocks[0]
+    i = PRODUCTS.index(product)
+    @stocks[i]
   end
-  def able_to_buy?(suica,juice)
-    if suica.amount > juice.price && @stocks[0] > 0
+  def able_to_buy?(suica,product)
+    index = PRODUCTS.index(product)
+    if suica.amount > PRICE[index] && @stocks[index] > 0
       true
     else
       false
     end
+  end
+  def buy(suica,product)
+    index = PRODUCTS.index(product)
+    if suica.amount > PRICE[index] && @stocks[index] > 0
+      @stocks[index] -= 1
+      @sales += PRICE[index]
+      suica.buy(PRICE[index])
+      return Juice.new(product,PRICE[index])
+    else
+      false
+    end
+  end
 
+  def check_sales
+    @sales
   end
 end
 
@@ -47,7 +68,12 @@ end
 test_vender1 = VenderMachine.new()
 test1 = Suica.new()
 
+
 puts test1.amount
 puts test1.charge(300)
 puts test1.amount
-puts test_vender1.check_stock()
+puts test_vender1.check_stock('ペプシ')
+puts test_vender1.able_to_buy?(test1,'ペプシ')
+puts test_vender1.buy(test1,'ペプシ')
+puts test1.amount
+puts test_vender1.check_sales
