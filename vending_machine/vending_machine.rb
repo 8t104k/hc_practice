@@ -7,7 +7,6 @@ class Suica
       false
     else
       @balance += charge_amount
-      true
     end
   end
 
@@ -21,39 +20,46 @@ class Suica
 end
 
 class VenderMachine
-  PRODUCTS = ['ペプシ']
-  PRICE = [150]
+  PRODUCTS = {
+    'ペプシ' => {price: 150, stock: 5},
+    'モンスター' => {price:230, stock: 5},
+    'いろはす' => {price:120, stock: 5}
+  }
+
   def initialize
-    @stocks = {0 => 5}
     @sales = 0
+    @stocks = PRODUCTS
   end
 
+  #PRODUCTSをインスタンス変数に変える
   def check_stock(product)
-    i = PRODUCTS.index(product)
-    @stocks[i]
+    PRODUCTS[product][:stock] if PRODUCTS.key?(product)
   end
   def able_to_buy?(suica,product)
-    index = PRODUCTS.index(product)
-    if suica.amount > PRICE[index] && @stocks[index] > 0
-      true
+    if PRODUCTS.key?(product)
+      suica.amount > PRODUCTS[product][:price] && PRODUCTS[product][:stock] > 0
     else
       false
     end
   end
   def buy(suica,product)
-    index = PRODUCTS.index(product)
-    if suica.amount > PRICE[index] && @stocks[index] > 0
-      @stocks[index] -= 1
-      @sales += PRICE[index]
-      suica.buy(PRICE[index])
-      return Juice.new(product,PRICE[index])
-    else
-      false
-    end
+    amount = suica.amount
+    price = PRODUCTS[product][:price]
+    stock = PRODUCTS[product][:stock]
+
+    return '残高が足りません' if amount < price
+    return 'out of stock' if stock <= 0
+    @sales += price
+    suica.buy(price)
+    return Juice.new(product,price)
   end
 
-  def check_sales
+  def show_sales
     @sales
+  end
+
+  def show_buyable_list
+
   end
 end
 
@@ -76,4 +82,4 @@ puts test_vender1.check_stock('ペプシ')
 puts test_vender1.able_to_buy?(test1,'ペプシ')
 puts test_vender1.buy(test1,'ペプシ')
 puts test1.amount
-puts test_vender1.check_sales
+puts test_vender1.show_sales
