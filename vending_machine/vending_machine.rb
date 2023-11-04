@@ -60,8 +60,10 @@ class VenderMachine
   end
 
   def show_buyable_list
-
+    buyable_list = @products.select { |product,p_info| p_info[:stock] > 0 }.keys
+    #buyable_list = buyable_list.keys
   end
+
 end
 
 class Juice
@@ -84,3 +86,4 @@ puts test_vender1.able_to_buy?(test1,'ペプシ')
 puts test_vender1.buy(test1,'ペプシ')
 puts test1.amount
 puts test_vender1.show_sales
+p test_vender1.show_buyable_list
