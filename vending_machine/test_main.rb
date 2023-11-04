@@ -1,8 +1,13 @@
-test_vender1 = VenderMachine.new()
+require_relative 'vendingmachine.rb'
+require_relative 'suica.rb'
+require_relative 'juice.rb'
+
+test_vender1 = VendingMachine.new()
 test1 = Suica.new()
 
-
 puts test1.amount
+#エラーになる
+#puts test1.amount = 1000
 puts test1.charge(300)
 puts test1.amount
 puts test_vender1.check_stock('ペプシ')
