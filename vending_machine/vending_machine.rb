@@ -28,27 +28,28 @@ class VenderMachine
 
   def initialize
     @sales = 0
-    @stocks = PRODUCTS
+    @products = PRODUCTS
   end
 
-  #PRODUCTSをインスタンス変数に変える
   def check_stock(product)
-    PRODUCTS[product][:stock] if PRODUCTS.key?(product)
+    return @products[product][:stock] if @products.key?(product)
   end
   def able_to_buy?(suica,product)
-    if PRODUCTS.key?(product)
-      suica.amount > PRODUCTS[product][:price] && PRODUCTS[product][:stock] > 0
+    if @products.key?(product)
+      price = @products[product][:price]
+      stock = @products[product][:stock]
+      suica.amount > price && stock > 0
     else
       false
     end
   end
   def buy(suica,product)
     amount = suica.amount
-    price = PRODUCTS[product][:price]
-    stock = PRODUCTS[product][:stock]
+    price = @products[product][:price]
+    stock = @products[product][:stock]
 
     return '残高が足りません' if amount < price
-    return 'out of stock' if stock <= 0
+    return '在庫がありません' if stock <= 0
     @sales += price
     suica.buy(price)
     return Juice.new(product,price)
