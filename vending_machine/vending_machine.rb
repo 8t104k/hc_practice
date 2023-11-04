@@ -51,6 +51,7 @@ class VenderMachine
     return '残高が足りません' if amount < price
     return '在庫がありません' if stock <= 0
     @sales += price
+    @products[product][:stock] -= 1
     suica.buy(price)
     return Juice.new(product,price)
   end
@@ -84,6 +85,18 @@ puts test1.amount
 puts test_vender1.check_stock('ペプシ')
 puts test_vender1.able_to_buy?(test1,'ペプシ')
 puts test_vender1.buy(test1,'ペプシ')
+puts test_vender1.buy(test1,'いろはす')
+puts test_vender1.buy(test1,'モンスター')
+puts test_vender1.buy(test1,'モンスター')
+puts test_vender1.buy(test1,'モンスター')
+puts test1.charge(10000)
+puts test_vender1.buy(test1,'モンスター')
+puts test_vender1.buy(test1,'モンスター')
+puts test_vender1.buy(test1,'モンスター')
+puts test_vender1.buy(test1,'モンスター')
+puts test_vender1.check_stock('モンスター')
+
+puts test_vender1.check_stock('モンスター')
 puts test1.amount
 puts test_vender1.show_sales
 p test_vender1.show_buyable_list
