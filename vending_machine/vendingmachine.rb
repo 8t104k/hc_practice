@@ -45,8 +45,7 @@ class VendingMachine
   end
 
   def show_buyable_list
-    buyable_list = @products.select { |product,p_info| p_info.length > 0 }.keys
-    #buyable_list = buyable_list.keys
+    @products.select { |product,p_info| p_info.length > 0 }.keys
   end
 
   def fill_products(product_name)
