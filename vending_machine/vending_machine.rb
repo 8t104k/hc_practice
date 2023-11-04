@@ -65,6 +65,12 @@ class VenderMachine
     #buyable_list = buyable_list.keys
   end
 
+  def fill_products(product, fill_num)
+    if @products.key?(product)
+      @products[product][:stock] += fill_num
+    end
+  end
+
 end
 
 class Juice
@@ -93,9 +99,10 @@ puts test1.charge(10000)
 puts test_vender1.buy(test1,'モンスター')
 puts test_vender1.buy(test1,'モンスター')
 puts test_vender1.buy(test1,'モンスター')
+p test_vender1.show_buyable_list
 puts test_vender1.buy(test1,'モンスター')
 puts test_vender1.check_stock('モンスター')
-
+puts test_vender1.fill_products('モンスター',10)
 puts test_vender1.check_stock('モンスター')
 puts test1.amount
 puts test_vender1.show_sales
