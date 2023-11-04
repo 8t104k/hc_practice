@@ -28,18 +28,16 @@ class VendingMachine
       false
     end
   end
-  def buy(suica,product)
+  def buy(suica,product_name)
     amount = suica.amount
-    price = PRODUCTS[product][:price]
-    stock = @products[product].length
+    price = PRODUCTS[product_name][:price]
+    stock = @products[product_name].length
 
     return '残高が足りません' if amount < price
     return '在庫がありません' if stock <= 0
     @sales += price
-    #@products[product][:stock] -= 1
     suica.buy(price)
-    return @products[product][0]
-    @products[product].delete_at(0)
+    return @products[product_name].shift
   end
 
   def show_sales
@@ -51,7 +49,7 @@ class VendingMachine
     #buyable_list = buyable_list.keys
   end
 
-  def fill_products(product_name, fill_num)
+  def fill_products(product_name)
     if @products.key?(product_name)
       price = PRODUCTS[product_name][:price]
       @products[product_name] << Juice.new(product_name,price)

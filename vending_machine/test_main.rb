@@ -6,7 +6,7 @@ test_vender1 = VendingMachine.new()
 test1 = Suica.new()
 
 puts test1.amount
-#エラーになる
+#エラーになるでOK
 #puts test1.amount = 1000
 puts test1.charge(300)
 puts test1.amount
@@ -24,7 +24,7 @@ puts test_vender1.buy(test1,'モンスター')
 p test_vender1.show_buyable_list
 puts test_vender1.buy(test1,'モンスター')
 puts test_vender1.check_stock('モンスター')
-puts test_vender1.fill_products('モンスター',10)
+puts test_vender1.fill_products('モンスター')
 puts test_vender1.check_stock('モンスター')
 puts test1.amount
 puts test_vender1.show_sales
