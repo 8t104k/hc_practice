@@ -20,13 +20,13 @@ class VendingMachine
     return @products[product_name].length if @products.key?(product_name)
   end
   def able_to_buy?(suica,product_name)
-    return false unless products.key?(product_name)
+    return false unless @products.key?(product_name)
     price = PRODUCTS[product_name][:price]
     stock = @products[product_name].length
-    suica.amount > price && stock > 0
+    suica.balance > price && stock > 0
   end
   def buy(suica,product_name)
-    amount = suica.amount
+    amount = suica.balance
     price = PRODUCTS[product_name][:price]
     stock = @products[product_name].length
 
