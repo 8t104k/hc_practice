@@ -49,6 +49,8 @@ class VendingMachine
     if @products.key?(product_name)
       price = PRODUCTS[product_name][:price]
       @products[product_name] << Juice.new(product_name,price)
+    else
+      "#{product_name}という商品はありません"
     end
   end
 
