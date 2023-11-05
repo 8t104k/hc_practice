@@ -16,17 +16,14 @@ class VendingMachine
     end
   end
 
-  def check_stock(product)
-    return @products[product].length if @products.key?(product)
+  def check_stock(product_name)
+    return @products[product_name].length if @products.key?(product_name)
   end
-  def able_to_buy?(suica,product)
-    if @products.key?(product)
-      price = PRODUCTS[product][:price]
-      stock = @products[product].length
-      suica.amount > price && stock > 0
-    else
-      false
-    end
+  def able_to_buy?(suica,product_name)
+    return false unless products.key?(product_name)
+    price = PRODUCTS[product_name][:price]
+    stock = @products[product_name].length
+    suica.amount > price && stock > 0
   end
   def buy(suica,product_name)
     amount = suica.amount
