@@ -8,13 +8,17 @@ class Pokemon
   end
 
   def attack
-    puts("#{@name} のこうげき!")
+    "#{@name} のこうげき!"
   end
 end
 
 class Pikachu < Pokemon
-  def initialize(*)
+  def initialize(*) #引数「＊」でSuperクラスにそのまま引数を渡す
     super
+  end
+
+  def attack
+    "#{@name}の10万ボルト!"
   end
 end
 
