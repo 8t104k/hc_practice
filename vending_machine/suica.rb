@@ -1,4 +1,6 @@
 class Suica
+  attr_reader :balance
+
   def initialize
     @balance = 500
   end
@@ -14,7 +16,4 @@ class Suica
     @balance -= price
   end
 
-  def amount
-    @balance
-  end
 end
