@@ -12,6 +12,17 @@ class Pokemon
   end
 end
 
-poke = Pokemon.new
-puts poke.name
-puts poke.attack
+class Pikachu < Pokemon
+  def initialize(*)
+    super
+  end
+end
+
+
+#poke = Pokemon.new
+#puts poke.name
+#puts poke.attack
+
+pika = Pikachu.new("ピカチュウ", "でんき", "", 100)
+puts pika.name
+puts pika.attack
