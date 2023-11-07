@@ -1,4 +1,14 @@
+module NameService
+  def chage_name(new_name)
+    if new_name == 'うんこ'
+      '不適切な名前です'
+    end
+    @name = new_name
+  end
+end
+
 class Pokemon
+  include NameService
   attr_reader :name,:type1,:type2,:hp
   def initialize(name,type1,type2,hp)
     @name = name
@@ -11,14 +21,9 @@ class Pokemon
     "#{@name} のこうげき!"
   end
 
-  def chage_name(new_name)
-    if new_name == 'うんこ'
-      '不適切な名前です'
-    else
-      @name = new_name
-    end
-  end
 end
+
+
 
 class Pikachu < Pokemon
   def initialize(*) #引数「＊」でSuperクラスにそのまま引数を渡す
